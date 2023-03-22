@@ -7,10 +7,13 @@ var { Employee } = require('../models/employee');
 router.get('/', async(req, res) => {
     try {
         const employeesData = await Employee.find();
-        res.status(200).send({
+        res.status(200).send(
+            /*{
             status: 'Success',
             data: employeesData,
-        });
+        }*/
+            employeesData
+        );
     } catch (error) {
         console.log('Error in retrieving Employees :' + JSON.stringify(error));
     }
@@ -25,15 +28,13 @@ router.get('/:id', async(req, res) => {
 
     const employee = await Employee.findById(req.params.id);
 
-    // if (!employee) {
-    //     res.status(404).send('Employee not found. Please try again');
-    //     return;
-    // }
-
-    res.status(200).send({
+    res.status(200).send(
+        /*{
         status: 'Success',
         data: employee,
-    });
+    }*/
+        employee
+    );
 });
 
 router.post('/', async(req, res) => {
